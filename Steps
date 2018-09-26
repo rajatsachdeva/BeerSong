@@ -1,0 +1,290 @@
+1. Create a new folder for this assignment.
+	
+	mkdir BeerSongAssingment
+
+2. Initialize GIT for version control for this assignment. 
+	
+	< Go to newly created folder >
+	cd BeerSongAssingment/
+
+	< Then do git init >
+	BeerSongAssingment>git init
+	Initialized empty Git repository in <Directory_path>/BeerSongAssingment/.git/
+
+	< Check git status >
+
+	git status
+	On branch master
+
+	Initial commit
+
+	nothing to commit (create/copy files and use "git add" to track)
+
+3. Create new file called README. Populate its content with description of the goal of this project.
+	
+	< create the README file >
+
+	touch README
+	
+	BeerSongAssingment>ll
+	total 0
+	-rw-r--r--  1 user  staff  0 Sep 27 00:32 README
+	
+	BeerSongAssingment>vim README 
+	< add the goal to README file  > 
+
+	< check if data is present using cat command >
+	BeerSongAssingment>cat README 
+
+	GOAL: Your repository must have “interface” and “implementation” branches. One containing the stubbed version of the functions while the other containing implementation. You must also show ability to merge these branches to master branch for releasing the code.
+	You must commit your code as frequently as possible. Each commit must include appropriate comment about code changes that you are pushing
+
+4. Add this file in version control.
+
+	< Will now add the README file >
+
+	BeerSongAssingment>git add README 
+
+	< check the status >
+	BeerSongAssingment>git status
+	On branch master
+
+	Initial commit
+
+	Changes to be committed:
+  	(use "git rm --cached <file>..." to unstage)
+
+	new file:   README
+
+5. Commit the changes with proper comment.
+
+	< commit the newly added changes to git >
+	BeerSongAssingment>git commit -m "Added README"
+	[master (root-commit) ea13a31] Added README
+ 	1 file changed, 2 insertions(+)
+ 	create mode 100644 README
+
+6. Create remote repository and push existing content in it.
+
+	< You need to First create repository on GitHub and get the URL >
+
+	< add remote repository with URL of your repository created in previous step > 
+	git remote add origin URL 
+
+	< check if its add correctly using following command > 
+	git remote -v
+
+	BeerSongAssingment>git push -u origin master
+	Counting objects: 3, done.
+	Delta compression using up to 4 threads.
+	Compressing objects: 100% (2/2), done.
+	Writing objects: 100% (3/3), 463 bytes | 46.00 KiB/s, done.
+	Total 3 (delta 0), reused 0 (delta 0)
+	To URL
+ 	* [new branch]      master -> master
+	Branch master set up to track remote branch master from origin.
+
+7. Create a working branch with name “interface”.
+
+	< create branch interface using following command >
+	git branch interface
+	BeerSongAssingment>git status
+	On branch master
+	Your branch is up-to-date with 'origin/master'.
+	nothing to commit, working tree clean
+
+8. Check out your named branch just created.
+
+	< switch/ checkout to created branch interface > 
+	BeerSongAssingment>git checkout interface
+	Switched to branch 'interface'
+	BeerSongAssingment>git status
+	On branch interface
+	nothing to commit, working tree clean
+
+9. Create a new file called BeerSong.java in source folder
+10. Add empty Main() and Ninety_Nine_Bottles_of_Beer() functions.
+	
+	BeerSongAssingment>mkdir src
+	BeerSongAssingment>cd src
+
+	< Create and add code to create .java File >
+	vim BeerSong.java
+	cat BeerSong.java 
+
+package com.company;
+
+public class BeerSong {
+
+    public static void main(String[] args) {
+
+    }
+
+    public static void Ninety_Nine_Bottles_of_Beer() {
+
+    }
+}
+
+11. Add the file to repository and commit it with comments.
+	BeerSongAssingment>git add src/BeerSong.java 
+	git status
+	On branch interface
+	Changes to be committed:
+  	(use "git reset HEAD <file>..." to unstage)
+
+	new file:   src/BeerSong.java
+
+	BeerSongAssingment>git commit -m "Added BeerSong.java"
+	[interface fb62d75] Added BeerSong.java
+ 	1 file changed, 12 insertions(+)
+ 	create mode 100644 src/BeerSong.java
+
+12. Push the content to remote repository.
+	BeerSongAssingment>git push -u origin interface
+	Counting objects: 4, done.
+	Delta compression using up to 4 threads.
+	Compressing objects: 100% (3/3), done.
+	Writing objects: 100% (4/4), 444 bytes | 444.00 KiB/s, done.
+	Total 4 (delta 0), reused 0 (delta 0)
+	To URL
+ 	* [new branch]      interface -> interface
+	Branch interface set up to track remote branch interface from origin.
+
+13. Create and checkout new branch called “implementation”
+
+	git branch implementation
+
+	BeerSongAssingment>git status
+	On branch interface
+	Your branch is up-to-date with 'origin/interface'.
+	nothing to commit, working tree clean
+
+	BeerSongAssingment>git checkout implementation
+	Switched to branch 'implementation'
+
+	BeerSongAssingment>git status
+	On branch implementation
+	nothing to commit, working tree clean
+
+14.Implement each method in this branch and ensure that there is no programming error pertaining to code in each method.
+
+package com.company;
+
+public class BeerSong {
+
+    public static void main(String[] args) {
+
+        // Call the Method
+        Ninety_Nine_Bottles_of_Beer();
+    }
+
+    public static void Ninety_Nine_Bottles_of_Beer() {
+        int numBeer = 99; // Initial Number of Beers
+        String bottleWord = "bottles"; // String variable to store if number of bottles are singular/plural
+
+        while (numBeer > 0) {
+
+            /*
+             * Handling special case of One bottle (Singular)
+             */
+            if (numBeer == 1) {
+                bottleWord = "bottle";
+            }
+
+            /*
+              Expected Output fot each iteration:
+              2 bottles of beer on the wall, 2 bottles of beer take one down, pass it around, 1 bottle of beer on the wall.
+             */
+            System.out.print(numBeer + " " + bottleWord + " of beer on the wall, ");
+            System.out.print(numBeer + " " + bottleWord + " of beer take one down, pass it around, ");
+
+            // reduce number of beers
+            numBeer--;
+
+            if(numBeer > 0) {
+                System.out.println(numBeer + " " + bottleWord + " of beer on the wall.");
+            } else {
+                // No beers left
+                System.out.println("no more bottles of beer on the wall.");
+            }
+        }
+
+    }
+}
+
+	< above code is successfully compiled >
+	src>ll
+	total 16
+	-rw-r--rw-r--r--  1 user  staff  1332 Sep 27 01:05 BeerSong.java
+	-rw-r--rw-r--r--  1 user  staff  1112 Sep 27 01:05 BeerSong.class
+
+15. For every method implemented, you must commit those changes with appropriate comment in working repository as well as remote repository.
+
+	BeerSongAssingment>git add .
+
+	BeerSongAssingment>git status
+	On branch implementation
+	Changes to be committed:
+  	(use "git reset HEAD <file>..." to unstage)
+
+	modified:   src/BeerSong.java
+
+	BeerSongAssingment>git commit -m "Added Implemented BeerSong.java"
+	[implementation a34c84a] Added Implemented BeerSong.java
+ 	1 file changed, 32 insertions(+), 1 deletion(-)
+
+16. Merge both “interface” and “implementation” branches to origin/master branch.
+	
+	BeerSongAssingment>git checkout master
+	Switched to branch 'master'
+	Your branch is up-to-date with 'origin/master'.
+
+	BeerSongAssingment>git merge interface
+	Updating ea13a31..fb62d75
+	Fast-forward
+ 	src/BeerSong.java | 12 ++++++++++++
+ 	1 file changed, 12 insertions(+)
+ 	create mode 100644 src/BeerSong.java
+
+ 	BeerSongAssingment>git merge implementation
+	Updating fb62d75..a34c84a
+	Fast-forward
+ 	src/BeerSong.java | 33 ++++++++++++++++++++++++++++++++-
+ 	1 file changed, 32 insertions(+), 1 deletion(-)
+
+ 	BeerSongAssingment>git status
+	On branch master
+	Your branch is ahead of 'origin/master' by 2 commits.
+  	(use "git push" to publish your local commits)
+	nothing to commit, working tree clean
+
+17. Push all commits and content to remote repository.
+	BeerSongAssingment>git push 
+	Counting objects: 4, done.
+	Delta compression using up to 4 threads.
+	Compressing objects: 100% (3/3), done.
+	Writing objects: 100% (4/4), 819 bytes | 819.00 KiB/s, done.	
+	Total 4 (delta 0), reused 0 (delta 0)
+	To URL
+   	ea13a31..a34c84a  master -> master
+	
+18.Print the log of all the changes you have made during entire development cycle of this assignment and save it in a file. Submit zipped copy of your code and print log of your git activities as assignment artifacts.
+
+	BeerSongAssingment>git log
+	commit a34c84a299e96896a8aa505705a3dbdd52303c40 (HEAD -> master, origin/master, implementation)
+	Author: Author Name
+	Date:   Thu Sep 27 01:12:18 2018 +0530
+
+    Added Implemented BeerSong.java
+
+	commit fb62d7512ccd31780cac74c8bf3bdd75e0d54974 (origin/interface, interface)
+	Author: Author Name
+	Date:   Thu Sep 27 00:58:04 2018 +0530
+
+    Added BeerSong.java
+
+	commit ea13a314f42e150649f6927b4f64280714406bf8
+	Author: Author Name
+	Date:   Thu Sep 27 00:37:10 2018 +0530
+
+    Added README
